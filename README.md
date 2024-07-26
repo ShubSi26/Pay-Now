@@ -7,9 +7,8 @@ Deployment - https://project-paynow.onrender.com/ (*May take loading time upto 3
 # Technology Used
 <img src="https://skillicons.dev/icons?i=mongodb,express,react,nodejs,tailwind,vite,ts,js,npm " /> <img src = "https://jwt.io/img/pic_logo.svg" width = 50px> <img src = "https://zod.dev/logo.svg" width = 50px>
 
-| | | | | | | | | | |
-|---|---|---|---|---|---|---|---|---|---|
 |`mongodb`|`express`|`react`|`nodejs`|`tailwindcss`|`vite`|`typescript`|`javascript`|`JWT`|`ZOD`|
+|---|---|---|---|---|---|---|---|---|---|
 
 # Key Features
 - ## Authentication
@@ -25,3 +24,9 @@ Deployment - https://project-paynow.onrender.com/ (*May take loading time upto 3
 > Currently, you can enter any data in the card details and any amount, and it will be added to the balance directly.
 - ## Send Request
   The user can request money from other people. To do this, in the transfer section, the user needs to select "Send Request," choose UID, email, or phone number, enter the details and the amount, then click "Send Request." On the receiver's side, the request will appear in the "Pending Requests" section on the homepage.
+- ## View Transactions
+  The user can view two types of transactions:
+  1. **Transaction History in Wallet Section**: Here, the user can see the amount added to their wallet balance.
+  2. **Transaction Section**: In this section, the user can see all the money sent and received from other people, along with details such as transaction ID (txid), sender and receiver, amount, date, and time.
+- ## Search People
+  The user can search for other people using their name or phone number. In the search section, the user needs to select either "name" or "number" and enter the corresponding details. The search results will then appear. The user also has the option to send money to the searched individuals directly from the search page.
