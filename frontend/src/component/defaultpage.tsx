@@ -5,15 +5,44 @@ import { baseurl, logined, userinfo } from "../recoil/atom";
 import axios from "axios";
 import { useState } from "react";
 
-let isloading : boolean;
-let setloading : any;
-
 
 export default function defaultpage(){
 
     const ar:string[] = ["bg-backg1 ","bg-backg2 ","bg-backg3 "];
     
     const random = Math.floor((Math.random() * (ar.length)) );
+
+
+    return<div className={ar[random]  + " bg-center bg-no-repeat h-fit sm:bg-stretch sm:ml-7 sm:mr-7 sm:rounded-2xl"}> 
+    <div className={"flex justify-around flex-col sm:flex-row"} >
+        <div className="flex flex-col justify-center">
+            <div className=" bg-white opacity-80 rounded-3xl mt-2 flex flex-col w-full ">
+                <img src={logo} alt="" />
+            </div>
+        </div>
+
+        <div className="sm:w-1/3 flex flex-col justify-center item-center">
+            <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">
+                <div className="text-white text-5xl font-bold text-center p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+                    Create Your Account With Zero Charges
+                </div>
+            </div>            
+
+        <LoginBox/>
+
+        </div>
+    </div>
+    <div className="flex flex-col items-center justify-center text-center">
+        <div className="shadow-lg">
+            <h1 className="text-5xl font-bold text-white">
+                World's Best Payment Gateway
+            </h1>
+        </div>
+    </div>
+    </div>
+}
+
+function LoginBox(){
 
     const navigate = useNavigate()
 
@@ -24,6 +53,8 @@ export default function defaultpage(){
     const setLogined = useSetRecoilState(logined);
 
     const [message,setMessage] = useState("");
+
+    const [isloading,setloading] = useState(true);
 
     function login(fromdata: any){
         setloading(false);
@@ -40,25 +71,11 @@ export default function defaultpage(){
             navigate("/home")
         }).catch((err)=>{
             setMessage(err.response.data.error);
+            setloading(true);
         })
     }
-
-    return<div className={ar[random]  + " bg-center bg-no-repeat h-fit sm:bg-stretch sm:ml-7 sm:mr-7 sm:rounded-2xl"}> 
-    <div className={"flex justify-around flex-col sm:flex-row"} >
-        <div className="flex flex-col justify-center">
-        <div className=" bg-white opacity-80 rounded-3xl mt-2 flex flex-col w-full ">
-            <img src={logo} alt="" />
-        </div>
-    </div>
-
-        <div className="sm:w-1/3 flex flex-col justify-center item-center">
-        <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">
-        <div className="text-white text-5xl font-bold text-center p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
-            Create Your Account With Zero Charges
-        </div>
-    </div>            
-
-<div className="w-full p-4 bg-white opacity-90 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    
+    return <div className="w-full p-4 bg-white opacity-90 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
     <form className="space-y-6" onSubmit={login}>
         <h5 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
@@ -77,7 +94,7 @@ export default function defaultpage(){
                 <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to Terms and Conditions</label>
             </div>
         </div>
-        <Buton/>
+        <Buton isloading = {isloading}/>
         <div className="self-center">
                         {message}
                     </div>
@@ -86,21 +103,10 @@ export default function defaultpage(){
         </div>
     </form>
 </div>
-
-        </div>
-    </div>
-    <div className="flex flex-col items-center justify-center text-center">
-        <div className="shadow-lg">
-            <h1 className="text-5xl font-bold text-white">
-                World's Best Payment Gateway
-            </h1>
-        </div>
-    </div>
-    </div>
 }
 
-function Buton(){
-     [isloading,setloading] = useState(true);
+function Buton({isloading}: {isloading: boolean}){
+     
 
     return <button type="submit" className=" flex justify-center w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         {isloading ? <span className="px-2.5 py-2.5">Login to your account</span> : 
