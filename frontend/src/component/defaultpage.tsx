@@ -4,6 +4,11 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { baseurl, logined, userinfo } from "../recoil/atom";
 import axios from "axios";
 import { useState } from "react";
+
+let isloading : boolean;
+let setloading : any;
+
+
 export default function defaultpage(){
 
     const ar:string[] = ["bg-backg1 ","bg-backg2 ","bg-backg3 "];
@@ -21,6 +26,7 @@ export default function defaultpage(){
     const [message,setMessage] = useState("");
 
     function login(fromdata: any){
+        setloading(false);
         fromdata.preventDefault();
         const data = {
             email:fromdata.target.email.value,
@@ -71,7 +77,7 @@ export default function defaultpage(){
                 <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to Terms and Conditions</label>
             </div>
         </div>
-        <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+        <Buton/>
         <div className="self-center">
                         {message}
                     </div>
@@ -91,4 +97,14 @@ export default function defaultpage(){
         </div>
     </div>
     </div>
+}
+
+function Buton(){
+     [isloading,setloading] = useState(true);
+
+    return <button type="submit" className=" flex justify-center w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        {isloading ? <span className="px-2.5 py-2.5">Login to your account</span> : 
+        <svg className="h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" r="15" cx="40" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" r="15" cx="100" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" r="15" cx="160" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>
+        }
+        </button>
 }

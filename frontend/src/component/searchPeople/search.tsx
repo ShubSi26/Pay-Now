@@ -34,7 +34,7 @@ export default function SearchPeople() {
     }
 
     return (
-        <div className="h-screen bg-slate-100">
+        <div className="min-h-screen h-auto bg-slate-100">
             <h1 className="p-8 font-bold text-4xl">Search People</h1>
             <div className="mb-5">
                 <form className="max-w-lg mx-auto">
