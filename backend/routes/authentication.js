@@ -60,7 +60,7 @@ router.post('/register', async (req, res) => {
     }
     catch(err){
         console.log(err);
-        res.status(400).json({ error: "Invalid Datas" });
+        res.status(400).json({ error: "Invalid Data" });
         res.end();
         return;
     }
@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
     const resp = await user.findOne({ email: req.body.email, password: req.body.password });
 
     if (!resp) {
-        res.status(400).json({ error: "E-mail address of password is wrong" });
+        res.status(400).json({ error: "E-mail address or Password is wrong" });
         res.end();
         return;
     }
