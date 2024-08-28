@@ -6,8 +6,8 @@
 
         const user: any = useRecoilValue(userinfo);
 
-        return <div className="sm:w-1/3">
-            <div className="m-4 p-4 bg-white rounded-xl shadow-lg">
+        return <div className="sm:w-1/3 h-auto sm:mb-8">
+            <div className="h-full p-4 m-4 bg-white rounded-xl shadow-lg">
                 <div className="bg-cyan-100 rounded-lg ">
                     <div className="text-4xl pt-4 font-bold text-center">₹ {user.balance}</div>
                     <div className=" pt-4 text-xl font-bold text-center">Account Balance</div>

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-mongoose.connect("your mongodb url")
+mongoose.connect("mongodb://localhost:27017/")
 
 const userschema = new mongoose.Schema({
     name:{type:String,required:true,trim:true},
