@@ -1,10 +1,13 @@
     import { useRecoilValue } from "recoil";
     import { userinfo } from "../../recoil/atom";
     import uid from "../../assets/uid.svg"
+import { useNavigate } from "react-router-dom";
 
     export default function Leftcomp() {
 
         const user: any = useRecoilValue(userinfo);
+
+        const nav = useNavigate();
 
         return <div className="sm:w-1/3 h-auto sm:mb-8">
             <div className="h-full p-4 m-4 bg-white rounded-xl shadow-lg">
@@ -12,7 +15,7 @@
                     <div className="text-4xl pt-4 font-bold text-center">₹ {user.balance}</div>
                     <div className=" pt-4 text-xl font-bold text-center">Account Balance</div>
                     <div className="flex justify-center">
-                        <button type="button" className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Add Money</button>
+                        <button type="button" onClick={() => { nav("/wallet") }} className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Add Money</button>
                     </div>
                 </div>
                 <div className="pt-4">

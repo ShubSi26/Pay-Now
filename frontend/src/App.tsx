@@ -15,7 +15,7 @@ import Notfound from './component/notfound/notfound'
 
 function App() {
   return (
-    <div className='h-screen'><RecoilRoot>
+    <div className='h-screen bg-gradient-to-l from-cyan-500 to-blue-500'><RecoilRoot>
       <BrowserRouter>
       <Navtop/>
       <Routes>

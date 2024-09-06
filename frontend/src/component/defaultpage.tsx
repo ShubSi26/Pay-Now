@@ -12,9 +12,9 @@ export default function defaultpage(){
     
     const random = Math.floor((Math.random() * (ar.length)) );
 
-
-    return<div className={ar[random]  + " bg-center bg-no-repeat h-fit sm:bg-stretch sm:ml-7 sm:mr-7 sm:rounded-2xl"}> 
-    <div className={"flex justify-around flex-col sm:flex-row"} >
+    
+    return<div className={ar[random]  + " bg-center bg-no-repeat sm:bg-stretch h-full "}> 
+    <div className={"flex justify-around flex-col sm:flex-row bg-gradient-to-t from-white/5 backdrop-blur-sm"} >
         <div className="flex flex-col justify-center">
             <div className=" bg-white opacity-80 rounded-3xl mt-2 flex flex-col w-full ">
                 <img src={logo} alt="" />
@@ -32,7 +32,7 @@ export default function defaultpage(){
 
         </div>
     </div>
-    <div className="flex flex-col items-center justify-center text-center">
+    <div className="flex flex-col items-center justify-center text-center bg-gradient-to-b from-white/5 backdrop-blur-sm">
         <div className="shadow-lg">
             <h1 className="text-5xl font-bold text-white">
                 World's Best Payment Gateway

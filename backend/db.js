@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 const { Schema } = mongoose;
+const databaseurl = process.env.databaseurl;
 
-mongoose.connect("mongodb://localhost:27017/")
+mongoose.connect(databaseurl)
 
 const userschema = new mongoose.Schema({
     name:{type:String,required:true,trim:true},

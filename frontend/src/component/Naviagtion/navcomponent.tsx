@@ -5,10 +5,10 @@ import { navatom } from "../../recoil/atom";
 export default function Navcomp() {
     const [index, setIndex]: any = useRecoilState(navatom);
 
-    const css1 = "shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-blue-700 ";
+    const css1 = " text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-blue-700 ";
     const css2 = "bg-slate-100 duration-300 ease-linear w-full flex justify-evenly border-b-0 border-t-4 border-blue-700";
-    const css3 = "shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-r-4 border-blue-700 rounded-br-lg";
-    const css4 = "shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-l-4 border-blue-700 rounded-bl-lg";
+    const css3 = "text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-r-4 border-blue-700 rounded-br-lg";
+    const css4 = "text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-l-4 border-blue-700 rounded-bl-lg";
 
     function getcss(i: number) {
         if (index === i) return css2;
@@ -17,7 +17,7 @@ export default function Navcomp() {
         return css1;
     }
 
-    return <div className="flex w-full">
+    return <div className="flex w-full pt-0 sm:pt-4">
         <NavItem css={getcss(0)} id={0} setIndex={setIndex} index={index} />
         <NavItem css={getcss(1)} id={1} setIndex={setIndex} index={index} url="Transaction" text={"Transaction"} d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
         <NavItem css={getcss(2)} id={2} setIndex={setIndex} index={index} url="wallet" text={"Wallet"} d={"M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"} />

@@ -1,5 +1,5 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { baseurl, userinfo } from "../../recoil/atom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { baseurl, navatom, userinfo } from "../../recoil/atom";
 import LeftComp from "./leftcomp";
 import RightComp from "./rightcomp";
 import { useState } from "react";
@@ -10,6 +10,8 @@ export default function Wallet(){
     const [user, setUser] = useRecoilState<any>(userinfo);
     const url = useRecoilValue(baseurl);
     const [transc,setTransc] = useState([]);
+    const set = useSetRecoilState(navatom);
+    set(2);
 
     const f = ()=>{const id = user._id;
         const h = sessionStorage.getItem("token");
