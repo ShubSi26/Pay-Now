@@ -1,5 +1,5 @@
 # Pay Now
-![](https://github.com/ShubSi26/Pay-Now/blob/main/images/home.jpg)
+![](https://github.com/ShubSi26/Pay-Now/blob/main/images/default.jpg)
 Deployment - https://project-paynow.onrender.com/ (*May take loading time upto 30s*)
 > [!WARNING]
 > Don't enter any personal information.
