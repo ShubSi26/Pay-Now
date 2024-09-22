@@ -1,44 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo/PAY NOW.png"
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { baseurl, logined, userinfo } from "../recoil/atom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import ph1 from "../assets/ph1.png"
+import ph2 from "../assets/ph2.png"
+import ph3 from "../assets/ph3.png"
+import './styles.css';
+import Footr from "./footr/footr.tsx"
+
 
 
 export default function defaultpage(){
-
-    const ar:string[] = ["bg-backg1 ","bg-backg2 ","bg-backg3 "];
-    
-    const random = Math.floor((Math.random() * (ar.length)) );
-
-    
-    return<div className={ar[random]  + " bg-center bg-no-repeat sm:bg-stretch h-full "}> 
-    <div className={"flex justify-around flex-col sm:flex-row bg-gradient-to-t from-white/5 backdrop-blur-sm"} >
-        <div className="flex flex-col justify-center">
-            <div className=" bg-white opacity-80 rounded-3xl mt-2 flex flex-col w-full ">
-                <img src={logo} alt="" />
-            </div>
-        </div>
-
-        <div className="sm:w-1/3 flex flex-col justify-center item-center">
+    return<div className={"bg-bg1 bg-center bg-no-repeat sm:bg-stretch h-full  "}> 
+    <div className={"flex justify-around flex-col-reverse sm:flex-row bg-gradient-to-t from-white/5 "} >
+        <div className="sm:w-1/3 flex flex-col justify-center item-center m-4 sm:border-0 bg-cyan-900 border-2 sm:bg-transparent border-slate-300 rounded-2xl">
             <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">
-                <div className="text-white text-5xl font-bold text-center p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+                <div className="text-white text-5xl font-bold text-center p-4  rounded-lg shadow-lg">
                     Create Your Account With Zero Charges
                 </div>
             </div>            
-
         <LoginBox/>
 
         </div>
-    </div>
-    <div className="flex flex-col items-center justify-center text-center bg-gradient-to-b from-white/5 backdrop-blur-sm">
-        <div className="shadow-lg">
-            <h1 className="text-5xl font-bold text-white">
-                World's Best Payment Gateway
-            </h1>
+        <div className="flex flex-col justify-center max-w-fit ">
+            <RightBox/>
         </div>
+
     </div>
+    <Footr/>
     </div>
 }
 
@@ -75,7 +66,7 @@ function LoginBox(){
         })
     }
     
-    return <div className="w-full p-4 bg-white opacity-90 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    return <div className="w-full p-4 bg-white opacity-90 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 ">
     <form className="space-y-6" onSubmit={login}>
         <h5 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
         <div>
@@ -114,3 +105,52 @@ function Buton({isloading}: {isloading: boolean}){
         }
         </button>
 }
+
+
+function RightBox() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % 3); // Loop through 3 boxes
+      }, 2000);
+  
+      return () => clearInterval(interval); // Cleanup on component unmount
+    }, []);
+  
+    return (
+      <div className="container flex justify-center items-center sm:h-screen h-64 relative">
+        <div className="flex justify-center items-center w-full h-full relative">
+          {/* Box 1 */}
+          <div
+            className={`box text-white flex justify-center items-center w-36 h-36 transition-all duration-1000
+            ${currentIndex === 0
+              ? 'z-10 absolute top-1/2 left-1/2  translate-x-3/4 sm:-translate-x-2/3 -translate-y-1/2 scale-200 sm:h-80 sm:w-80 scale-150'
+              : 'absolute translate-x-4 top-1/3 blur-sm opacity-70 scale-75 ' }`}
+          >
+            <img src={ph1} alt="" />
+          </div>
+  
+          {/* Box 2 */}
+          <div
+            className={`box text-white flex justify-center items-center w-36 h-36 transition-all duration-1000
+            ${currentIndex === 1
+              ? 'z-20 absolute top-1/2 left-1/2  translate-x-3/4 sm:-translate-x-2/3 -translate-y-1/2 scale-200 sm:h-80 sm:w-80 scale-150'
+              : 'absolute translate-x-4 top-1/3 blur-sm opacity-70 scale-75 '}`} 
+          >
+            <img src={ph2} alt="" />
+          </div>
+  
+          {/* Box 3 */}
+          <div
+            className={`box text-white flex justify-center items-center w-36 h-36 transition-all duration-1000
+            ${currentIndex === 2
+              ? 'z-20 absolute top-1/2 left-1/2 translate-x-3/4 sm:-translate-x-2/3 -translate-y-1/2 sm:h-80 sm:w-80 scale-150'
+              : 'absolute translate-x-4 top-1/3 blur-sm opacity-70 scale-75 '}`} 
+          >
+            <img src={ph3} alt="" />
+          </div>
+        </div>
+      </div>
+    );
+  }

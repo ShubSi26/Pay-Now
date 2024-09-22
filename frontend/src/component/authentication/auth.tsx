@@ -1,9 +1,10 @@
 import { useRecoilValue } from "recoil";
 import {logined} from "../../recoil/atom";
-import { useNavigate } from "react-router-dom";
-import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function Auth(Props:React.PropsWithChildren){
+
+export default function Auth(){
     const login:boolean = useRecoilValue(logined);
 
     const navigate = useNavigate();
@@ -12,6 +13,6 @@ export default function Auth(Props:React.PropsWithChildren){
         if(!login) navigate("/");
     },[login]);
     
-    return (login)?Props.children : <div></div>;
+    return (login)? <Outlet/> : <div></div>;
 
 }

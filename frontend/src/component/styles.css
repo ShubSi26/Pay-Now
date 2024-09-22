@@ -1,0 +1,13 @@
+    .scrollbar-hidden {
+        overflow: hidden; /* Prevents scroll */
+    }
+    
+    .scrollbar-hidden {
+        -ms-overflow-style: none; /* Internet Explorer and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    html{
+        -ms-overflow-style: none; /* Internet Explorer and Edge */
+        scrollbar-width: none; /* Firefox */
+    }

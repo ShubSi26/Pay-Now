@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'backg1': "url('./assets/hh.png')",
+        'bg1': "url('./assets/bg.png')",
         'backg2': "url('./assets/ff.png')",
         'backg3': "url('./assets/gg.png')",
         'regbg': "url('./assets/aa.png')"
@@ -19,7 +19,20 @@ export default {
     },
   },
   plugins: [
-    require('flowbite/plugin')
-]
+    require('flowbite/plugin'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hidden': {
+          overflow: 'hidden', // Prevents scroll
+        },
+        '.scrollbar-hidden::-webkit-scrollbar': {
+          display: 'none', // Safari and Chrome
+        },
+        '.scrollbar-hidden': {
+          '-ms-overflow-style': 'none', // Internet Explorer and Edge
+          'scrollbar-width': 'none', // Firefox
+        },
+      });
+    },
+  ]
 }
-

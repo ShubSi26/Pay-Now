@@ -5,10 +5,10 @@ import { navatom } from "../../recoil/atom";
 export default function Navcomp() {
     const [index, setIndex]: any = useRecoilState(navatom);
 
-    const css1 = " text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-blue-700 ";
+    const css1 = " text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-blue-700 ";
     const css2 = "bg-slate-100 duration-300 ease-linear w-full flex justify-evenly border-b-0 border-t-4 border-blue-700";
-    const css3 = "text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-r-4 border-blue-700 rounded-br-lg";
-    const css4 = "text-white shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-l-4 border-blue-700 rounded-bl-lg";
+    const css3 = "text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-r-4 border-blue-700 rounded-br-lg";
+    const css4 = "text-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.3)] duration-300 ease-linear cursor-pointer w-full grid justify-items-center border-b-4 border-l-4 border-blue-700 rounded-bl-lg";
 
     function getcss(i: number) {
         if (index === i) return css2;
