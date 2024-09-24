@@ -7,11 +7,29 @@ More images - [Click Here](https://github.com/ShubSi26/Pay-Now/tree/main/images)
 > Don't enter any personal information.
 
 # Technology Used
-<img src="https://skillicons.dev/icons?i=mongodb,express,react,nodejs,tailwind,vite,ts,js,npm " /> <img src = "https://jwt.io/img/pic_logo.svg" width = 50px> <img src = "https://zod.dev/logo.svg" width = 50px>
+<img src="https://skillicons.dev/icons?i=mongodb,express,react,nodejs,tailwind,vite,ts,js,npm,docker " /> <img src = "https://jwt.io/img/pic_logo.svg" width = 50px> <img src = "https://zod.dev/logo.svg" width = 50px>
 
-|`mongodb`|`express`|`react`|`nodejs`|`tailwindcss`|`vite`|`typescript`|`javascript`|`JWT`|`ZOD`|
-|---|---|---|---|---|---|---|---|---|---|
+|`mongodb`|`express`|`react`|`nodejs`|`tailwindcss`|`vite`|`typescript`|`javascript`|`Docker`|`JWT`|`ZOD`|
+|---|---|---|---|---|---|---|---|---|---|---|
 
+# Local Setup
+- ## By using docker
+  Run the following command
+  ```bash
+  docker run -e secret="<yoursecret>" -e databaseurl="<your_mongodb_url>" shubhamdockr/paynow:v2_latest
+  ```
+- ## By CLI
+  ```bash
+  git clone https://github.com/ShubSi26/Pay-Now.git
+  ```
+  In Frontend folder, run
+  ```bash
+  npm run dev
+  ```
+  In backend folder, run
+  ```bash
+  node server.js
+  ```
 # Key Features
 - ## Authentication
   The user can create an account and perform operations such as logging in and signing up. Upon logging in or signing up, the user will be given a JWT key for authentication purposes.
