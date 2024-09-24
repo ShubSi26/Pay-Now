@@ -55,6 +55,8 @@ router.post('/register', async (req, res) => {
         }
         const token = jwt.sign({ key: resp._id }, process.env.secret);
 
+        console.log(resp.name + " registered");
+
         res.status(200).json({ token, resp });
         res.end();
     }
@@ -77,7 +79,6 @@ const loginschema = zod.object({
 
 router.post("/login", async (req, res) => {
 
-    console.log(req.body);
 
     const { success } = loginschema.safeParse(req.body);
 
@@ -88,8 +89,6 @@ router.post("/login", async (req, res) => {
     }
     const resp = await user.findOne({ email: req.body.email, password: req.body.password });
 
-    console.log(resp);
-
     if (!resp) {
         res.status(400).json({ error: "E-mail address or Password is wrong" });
         res.end();
@@ -97,6 +96,8 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ key: resp._id }, process.env.secret);
+
+    console.log(resp.name + " logged");
 
     res.status(200).json({ token, resp });
     res.end();

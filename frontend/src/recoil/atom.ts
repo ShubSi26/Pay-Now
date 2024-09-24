@@ -8,7 +8,7 @@ export const logined = atom({
 
 export const baseurl = atom({
     key:"baseurl",
-    default:"http://localhost:3000"
+    default:"."
 })
 
 export const navatom = atom({

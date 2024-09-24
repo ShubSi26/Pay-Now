@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const user = require('./userdetail');
 const authentication = require("./authentication");
 const wallet  = require("./wallet");
@@ -14,6 +15,10 @@ router.use("/wallet",wallet);
 router.use("/payment",payment);
 router.use("/transaction",transaction);
 router.use("/search",search);
+
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 
 module.exports = router;
