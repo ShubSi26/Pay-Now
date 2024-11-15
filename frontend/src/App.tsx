@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './component/Naviagtion/navbar';
 import Navtop from './component/Naviagtion/navtop';
 
+
 // Lazy loading the components
 const Defaultpage = React.lazy(() => import('./component/defaultpage'));
 const Register = React.lazy(() => import('./component/Registration/register'));
@@ -16,14 +17,14 @@ const SearchPeople = React.lazy(() => import('./component/searchPeople/search'))
 const Auth = React.lazy(() => import('./component/authentication/auth'));
 const Payment = React.lazy(() => import('./component/payment/payment'));
 const Notfound = React.lazy(() => import('./component/notfound/notfound'));
+const Loan = React.lazy(() => import('./component/loan/loan'));
 
 function App() {
   return (
-    <div className="h-screen">
+    <div className="h-screen w-screen">
       <RecoilRoot>
         <BrowserRouter>
-          <Navtop />
-          <AnimatedRoutes />
+            <AnimatedRoutes />
         </BrowserRouter>
       </RecoilRoot>
     </div>
@@ -43,6 +44,7 @@ function AnimatedRoutes() {
               <Route path="/transaction" element={<Animate><Transaction /></Animate>} />
               <Route path="/transfer" element={<Animate><Transfer /></Animate>} />
               <Route path="/search" element={<Animate><SearchPeople /></Animate>} />
+              <Route path="/loan/*" element={<Animate><Loan /></Animate>} />
               <Route path="/payment" element={<Payment />} />
             </Route>
             <Route>
@@ -59,18 +61,17 @@ function AnimatedRoutes() {
 
 function Animate({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className='flex flex-row w-screen'>
       <Navbar />
-      <motion.div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          className='w-full h-full'
         >
           {children}
         </motion.div>
-      </motion.div>
-    </>
+    </div>
   );
 }
 

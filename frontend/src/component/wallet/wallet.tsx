@@ -32,7 +32,7 @@ export default function Wallet(){
             })
         }
 
-    return <div className="sm:p-10 flex justify-center sm:flex-row flex-col bg-slate-100 h-auto">
+    return <div className="sm:p-10 flex h-screen justify-center sm:flex-row flex-col bg-sky-700">
         <LeftComp func = {f} user = {user} updateuser = {updateuser}/>
         <RightComp trx = {transc} f = {f} updateuser = {updateuser}/>
     </div>

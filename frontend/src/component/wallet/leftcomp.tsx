@@ -10,7 +10,7 @@ export default function LeftComp(props:React.PropsWithRef<any>){
     
 
     return <div className="sm:w-1/3 w-full h-full">
-        <div className="pl-5 text-4xl font-bold">Wallet</div>
+        <div className="pl-5 text-4xl font-bold text-white">Wallet</div>
         <div className="bg-white p-5 rounded-lg  m-7 mb-0 shadow-md">
 
         <div className="flex flex-col items-center justify-center">

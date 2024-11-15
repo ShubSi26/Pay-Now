@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useRecoilValue } from "recoil";
 import { baseurl, userinfo } from "../../recoil/atom";
 import axios from "axios";
-import moment from "moment";
+import moment from "moment-timezone";
 
 export default function Transaction(){
 
@@ -22,9 +22,9 @@ export default function Transaction(){
     
    useEffect(f,[]);
 
-    return <div className="bg-slate-100 h-screen">
-        <h1 className="font-semibold text-4xl p-5 pl-10">Transaction History</h1>
-        <div className="flex justify-center">
+    return <div className="bg-sky-700 min-h-screen w-full overflow-auto">
+        <h1 className="font-semibold text-4xl p-5 pl-10 text-white">Transaction History</h1>
+        <div className="flex justify-center w-full">
             {(transc.length === 0) ? <div className="text-center text-2xl">No Transactions Yet</div> : <TransactionHistory transc = {transc}/>}
         </div>
     </div>
@@ -38,7 +38,7 @@ function TransactionHistory(props:any){
         return moment(date).tz(moment.tz.guess()).format('YYYY-MM-DD hh:mm:ss A (z)');
     }
 
-    return <div className="bg-white w-11/12 rounded-md shadow-md p-5">
+    return <div className="bg-white w-full m-10 rounded-md shadow-md p-5">
         <div className="hidden sm:grid grid-cols-4 gap-4 text-2xl font-semibold border-b-2 border-gray-300">
             <div className="w-fit">Transaction ID</div>
             <div>Sender & Receiver</div>
@@ -46,7 +46,7 @@ function TransactionHistory(props:any){
             <div>Date & Time</div>
         </div>
             {props.transc.map((item:any)=>{
-                return <div className="sm:grid grid-cols-4 gap-4 rounded-sm hover:bg-slate-100 p-5 border-b-2 border-gray-300">
+                return <div className="sm:grid grid-cols-4 gap-4 rounded-sm hover:bg-slate-100 p-5 border-b-2 border-gray-300 w-full">
                     <div className="w-fit bg-blue-100 text-blue-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
                         <span className="relative sm:hidden">TxID:</span>{item.id}
                     </div>

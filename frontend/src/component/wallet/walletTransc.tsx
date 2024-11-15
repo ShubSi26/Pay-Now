@@ -41,7 +41,7 @@ function Tranx(prop: React.PropsWithRef<any>) {
     }
 
 
-    return <div className="sm:flex sm:justify-between w-full border-b border-gray-300">
+    return <div className="sm:grid sm:grid-cols-3 w-full border-b border-gray-300">
         <div className="p-2"><span className="sm:hidden">TxiD: </span>{prop.data.id}</div>
         <div className="pl-2 sm:p-2  text-green-600">+ ₹{prop.data.amount}</div>
         <div className="p-2">{convertUTCDateToIST(new Date(prop.data.date))}</div>

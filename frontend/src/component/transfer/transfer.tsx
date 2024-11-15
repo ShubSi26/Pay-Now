@@ -10,11 +10,11 @@ export default function Transfer(){
 
     const [flag,setflag] = useState(false);
     
-    return <div className="pl-2 pr-2 sm:pl-14 sm:pr-14 pb-1 pt-8 bg-slate-100">
-        <div className="font-bold  text-4xl mb-6">
+    return <div className="pl-2 pr-2 sm:pl-14 sm:pr-14 pb-1 pt-8 bg-sky-700 h-screen">
+        <div className="font-bold text-white text-4xl mb-6">
                 Transfer
             </div>
-            <div className="flex justify-around h-20">
+            <div className="flex justify-around h-20 pb-2 text-white">
                 <div onClick={()=>setflag(false)} className={ ((!flag)? "bg-cyan-300 rounded-lg shadow-md " : " ")+ "   w-full flex flex-col items-center justify-center font-semibold text-xl hover:text-2xl transition-all cursor-pointer " }>
                     <div>Send Money</div>
                 </div>
