@@ -3,34 +3,85 @@ const bodyParser = require('body-parser');
 const {JWTMiddleware} = require('../middleware/jwt');
 const {user,wallet,transaction,paymentRequest} = require('../db');
 const { mongo, default: mongoose } = require('mongoose');
+const crypto = require("crypto");
+require('dotenv').config();
+const razorpay = require('../razorpay');
 
 const router = express.Router();
 router.use(bodyParser.json());
 
 
-router.post("/addmoney",JWTMiddleware,async (req,res)=>{
-    const id = req.body._id;
-    const amount = req.body.amount;
+router.post("/order",JWTMiddleware,async (req,res)=>{
+    const { amount ,user_id} = req.body; // Get amount from the request body
 
-    const txid = Math.floor(Math.random()*1030600);
+    const options = {
+        amount: amount * 100, // Amount is in currency subunits (1 INR = 100 paise)
+        currency: "INR",
+    };
 
-    const resp = await user.updateOne({_id:id},{$inc:{balance:amount}});
-
-    if(!resp){
-        res.status(400).json({error:"User not found"});
-        res.end();
-        return;
+    try {
+        const response = await razorpay.orders.create(options);
+        res.json({
+            id: response.id,
+            currency: response.currency,
+            amount: response.amount,
+            key_id: process.env.RAZORPAY_KEY_ID,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Something went wrong" });
     }
-
-    const walet = await wallet.create({id:txid,amount:amount,user:id,date:new Date()});
-    if(!walet){
-        res.status(400).json({error:"Error in updating wallet"});
-        res.end();
-        return;
-    }
-    res.status(200).json({txid:txid});
 
 });
+
+router.post("/verify", JWTMiddleware, async (req, res) => {
+    const { response, _id, amount } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+
+    // Create a string to verify the signature
+    
+    const generated_signature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest('hex');
+
+    // Check if the generated signature matches the received signature
+    if (generated_signature === razorpay_signature) {
+        // The payment is verified
+        // Update the user's wallet balance, save transaction details, etc.
+        const session = await mongoose.startSession();
+        try {
+            session.startTransaction();
+            const resp = await user.findOne({_id:_id});
+            if(!resp){
+                res.status(400).json({error:"User not found"});
+                res.end();
+                return;
+            }
+            const bal = resp.balance;
+            const newbal = Number(bal) + Number(amount);
+            const resp1 = await user.updateOne({_id:_id},{balance:newbal});
+            const resp2 = await wallet.create({user:_id,amount:amount,date:Date.now(), id:razorpay_payment_id});
+
+            if(!resp1 || !resp2){
+                res.status(400).json({error:"Error in updating wallet"});
+                res.end();
+                await session.abortTransaction();
+                session.endSession();
+                return;
+            }
+            await session.commitTransaction();
+            res.status(200).json({ message: "Payment successful!" });
+        }
+        catch (err) {
+            await session.abortTransaction();
+            console.error(err);
+            res.status(400).json({ error: "Payment verification failed" });
+        }
+    } else {
+        res.status(400).json({ error: "Payment verification failed" });
+    }
+});
+
 
 router.post("/verifyDetails",JWTMiddleware,async (req,res)=>{
 

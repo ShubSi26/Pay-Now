@@ -2,3 +2,4 @@ backend/node_modules
 backend/dist
 node_modules
 dist
+backend/.env

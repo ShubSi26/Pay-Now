@@ -10,7 +10,7 @@ export default function Transfer(){
 
     const [flag,setflag] = useState(false);
     
-    return <div className="pl-2 pr-2 sm:pl-14 sm:pr-14 pb-1 pt-8 bg-sky-700 h-screen">
+    return <div className="pl-2 pr-2 sm:pl-14 sm:pr-14 pb-1 pt-8 bg-sky-700 h-full sm:h-screen">
         <div className="font-bold text-white text-4xl mb-6">
                 Transfer
             </div>

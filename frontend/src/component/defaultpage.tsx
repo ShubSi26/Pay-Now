@@ -3,6 +3,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { baseurl, logined, userinfo } from "../recoil/atom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Navtop from './Naviagtion/navtop';
 
 import ph1 from "../assets/ph1.png"
 import ph2 from "../assets/ph2.png"
@@ -13,7 +14,8 @@ import Footr from "./footr/footr.tsx"
 
 
 export default function defaultpage(){
-    return<div className={"bg-bg1 bg-center bg-no-repeat sm:bg-stretch h-full  "}> 
+    return<div className={"bg-bg1 bg-center bg-no-repeat sm:bg-stretch h-full  "}>
+      <Navtop/> 
     <div className={"flex justify-around flex-col-reverse sm:flex-row bg-gradient-to-t from-white/5 "} >
         <div className="sm:w-1/3 flex flex-col justify-center item-center m-4 sm:border-0 bg-cyan-900 border-2 sm:bg-transparent border-slate-300 rounded-2xl">
             <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">

@@ -4,7 +4,7 @@ import Applyloan from './applyloan'
 
 export default function Loan(){
     return (
-        <div className='flex justify-center items-center h-screen bg-sky-700'>
+        <div className='flex justify-center items-center h-full sm:h-screen bg-sky-700'>
             <Routes>
                 <Route path='/' element={<Loahhome/>} />
                 <Route path='/apply' element={<Applyloan/>} />
@@ -16,8 +16,8 @@ export default function Loan(){
 function Loahhome(){
     const navigate = useNavigate();
     return(
-        <div className='flex flex-row bg-white rounded-xl p-4'>
-                <div className=' border-r-4 border-sky-700 mr-2 pr-2 rounded'>
+        <div className='flex flex-col sm:flex-row bg-white rounded-xl p-4 m-1'>
+                <div className=' border-b-4 sm:border-r-4 border-sky-700 mr-2 pr-2 rounded'>
                     <div className='text-4xl font-bold text-sky-800'>
                         Apply For Loan
                     </div>

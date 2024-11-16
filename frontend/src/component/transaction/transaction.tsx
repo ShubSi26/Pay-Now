@@ -38,7 +38,7 @@ function TransactionHistory(props:any){
         return moment(date).tz(moment.tz.guess()).format('YYYY-MM-DD hh:mm:ss A (z)');
     }
 
-    return <div className="bg-white w-full m-10 rounded-md shadow-md p-5">
+    return <div className="bg-white w-full m-2 sm:m-10 rounded-md shadow-md sm:p-5">
         <div className="hidden sm:grid grid-cols-4 gap-4 text-2xl font-semibold border-b-2 border-gray-300">
             <div className="w-fit">Transaction ID</div>
             <div>Sender & Receiver</div>
