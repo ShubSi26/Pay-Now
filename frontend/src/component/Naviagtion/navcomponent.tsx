@@ -25,6 +25,7 @@ export default function Navcomp() {
         <NavItem css={getcss(4)} id={4} setIndex={setIndex} index={index} url="transfer" text={"Transfer"} d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
         <NavItem css={getcss(5)} id={5} setIndex={setIndex} index={index} url="search" text={"Search"} d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         <NavItem css={getcss(5)} id={7} setIndex={setIndex} index={index} url="loan" text={"Loan"} d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6 M7 9l11 0" />
+        <NavItem css={getcss(5)} id={8} setIndex={setIndex} index={index} url="Bills" text={"Bills"} d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2 M14 8h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5m2 0v1.5m0 -9v1.5" />
         <NavItem css={getcss(6)} id={6} setIndex={setIndex} index={index} />
     </div>
 }

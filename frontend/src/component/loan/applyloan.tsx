@@ -82,7 +82,7 @@ function Step1(props:any){
                              2
                         </div>
                     </div>
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 h-full">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                         <div className="col-span-2 text-xl font-semibold p-2">
                             <div className="text-sky-900">Name: </div>
                             <div className="border-2 rounded-md p-2 flex justify-between">

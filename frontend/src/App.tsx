@@ -18,6 +18,7 @@ const Auth = React.lazy(() => import('./component/authentication/auth'));
 const Payment = React.lazy(() => import('./component/payment/payment'));
 const Notfound = React.lazy(() => import('./component/notfound/notfound'));
 const Loan = React.lazy(() => import('./component/loan/loan'));
+const Bills = React.lazy(() => import('./component/Bills/Bills'));
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function AnimatedRoutes() {
               <Route path="/transfer" element={<Animate><Transfer /></Animate>} />
               <Route path="/search" element={<Animate><SearchPeople /></Animate>} />
               <Route path="/loan/*" element={<Animate><Loan /></Animate>} />
+              <Route path="/bills" element={<Animate><Bills /></Animate>} />
               <Route path="/payment" element={<Payment />} />
             </Route>
             <Route>
