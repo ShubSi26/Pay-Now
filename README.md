@@ -13,11 +13,6 @@ More images - [Click Here](https://github.com/ShubSi26/Pay-Now/tree/main/images)
 |---|---|---|---|---|---|---|---|---|---|---|
 
 # Local Setup
-- ## By using docker
-  Run the following command
-  ```bash
-  docker run -e secret="<yoursecret>" -e databaseurl="<your_mongodb_url>" shubhamdockr/paynow:v2_latest
-  ```
 - ## By CLI
   ```bash
   git clone https://github.com/ShubSi26/Pay-Now.git
