@@ -79,28 +79,31 @@ const loginschema = zod.object({
 
 router.post("/login", async (req, res) => {
 
+    console.log(req.body)
 
-    const { success } = loginschema.safeParse(req.body);
+    try{
+        const { email, password } = loginschema.parse(req.body);
+        console.log(email, password);
+        const resp = await user.findOne({ email: req.body.email, password: req.body.password });
+        console.log(resp);
+        if (!resp) {
+            res.status(400).json({ error: "E-mail address or Password is wrong" });
+            res.end();
+            return;
+        }
 
-    if (!success) {
+        const token = jwt.sign({ key: resp._id }, process.env.secret);
+
+        console.log(resp.name + " logged");
+
+        res.status(200).json({ token, resp });
+
+    }catch(err){
+        console.log(err)
         res.status(400).json({ error: "Invalid data" });
         res.end();
         return;
     }
-    const resp = await user.findOne({ email: req.body.email, password: req.body.password });
-
-    if (!resp) {
-        res.status(400).json({ error: "E-mail address or Password is wrong" });
-        res.end();
-        return;
-    }
-
-    const token = jwt.sign({ key: resp._id }, process.env.secret);
-
-    console.log(resp.name + " logged");
-
-    res.status(200).json({ token, resp });
-    res.end();
 })
 
 module.exports = router;

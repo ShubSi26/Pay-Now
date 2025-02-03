@@ -8,7 +8,7 @@ export const logined = atom({
 
 export const baseurl = atom({
     key:"baseurl",
-    default:"https://project-paynow.onrender.com"
+    default:""
 })
 
 export const navatom = atom({
