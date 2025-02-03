@@ -1,6 +1,6 @@
 # Pay Now
 ![](https://github.com/ShubSi26/Pay-Now/blob/main/images/default.jpg)
-Deployment - https://project-paynow.onrender.com/ (*May take loading time upto 30s*)
+Deployment - https://paynow.devshubh.live
 
 More images - [Click Here](https://github.com/ShubSi26/Pay-Now/tree/main/images)
 > [!WARNING]
