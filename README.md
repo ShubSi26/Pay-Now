@@ -17,13 +17,9 @@ More images - [Click Here](https://github.com/ShubSi26/Pay-Now/tree/main/images)
   ```bash
   git clone https://github.com/ShubSi26/Pay-Now.git
   ```
-  In Frontend folder, run
+  In home folder, run
   ```bash
-  npm run dev
-  ```
-  In backend folder, run
-  ```bash
-  node server.js
+  build
   ```
 # Key Features
 - ## Authentication
