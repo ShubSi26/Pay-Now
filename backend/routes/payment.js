@@ -4,6 +4,7 @@ const {JWTMiddleware} = require('../middleware/jwt');
 const {user,wallet,transaction,paymentRequest} = require('../db');
 const { mongo, default: mongoose } = require('mongoose');
 const crypto = require("crypto");
+const {Cashfree} = require("cashfree-pg");
 require('dotenv').config();
 const razorpay = require('../razorpay');
 
@@ -11,7 +12,7 @@ const router = express.Router();
 router.use(bodyParser.json());
 
 
-router.post("/order",JWTMiddleware,async (req,res)=>{
+router.post("/razorpayorder",JWTMiddleware,async (req,res)=>{
     const { amount ,user_id} = req.body; // Get amount from the request body
 
     const options = {
@@ -34,7 +35,7 @@ router.post("/order",JWTMiddleware,async (req,res)=>{
 
 });
 
-router.post("/verify", JWTMiddleware, async (req, res) => {
+router.post("/razorpayverify", JWTMiddleware, async (req, res) => {
     const { response, _id, amount } = req.body;
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
 
@@ -81,6 +82,83 @@ router.post("/verify", JWTMiddleware, async (req, res) => {
         res.status(400).json({ error: "Payment verification failed" });
     }
 });
+
+
+router.post('/cashfreeorder',JWTMiddleware,async (req,res)=>{
+
+    const { amount ,user_id} = req.body;
+    Cashfree.XClientId=process.env.cashfreeXClientId;
+    Cashfree.XClientSecret=process.env.cashfreeXClientSecret;
+    Cashfree.XEnvironment="TEST";
+
+    const resp = await user.findOne({_id:user_id});
+
+    const request = {
+        "order_amount": amount,
+        "order_currency": "INR",
+        "order_id": `csfree_${Math.floor(Math.random()*1000000)}`,
+        "customer_details": {
+            "customer_id": user_id,
+            "customer_phone": resp.number,
+            "customer_name": resp.name,
+        },   
+    }
+
+    Cashfree.PGCreateOrder("2023-08-01", request).then((response) => {
+        res.status(200).json({response:response.data});
+    }).catch((error) => {
+        console.error('Error:', error.response.data.message);
+    });
+
+
+})
+
+router.post('/cashfreeverify',JWTMiddleware,async (req,res)=>{
+
+    const {order_id,_id} = req.body;
+
+    Cashfree.XClientId=process.env.cashfreeXClientId;
+    Cashfree.XClientSecret=process.env.cashfreeXClientSecret;
+    Cashfree.XEnvironment="TEST";
+
+    Cashfree.PGOrderFetchPayments("2023-08-01", order_id).then(async(response) => {
+
+        const session = await mongoose.startSession();
+        try {
+            session.startTransaction();
+            const resp = await user.findOne({_id:_id});
+            if(!resp){
+                res.status(400).json({error:"User not found"});
+                res.end();
+                return;
+            }
+            const bal = resp.balance;
+            const newbal = Number(bal) + response.data[0].payment_amount;
+            const amount = response.data[0].payment_amount;
+            const resp1 = await user.updateOne({_id:_id},{balance:newbal});
+            const resp2 = await wallet.create({user:_id,amount:amount,date:Date.now(), id:order_id});
+
+            if(!resp1 || !resp2){
+                res.status(400).json({error:"Error in updating wallet"});
+                res.end();
+                await session.abortTransaction();
+                session.endSession();
+                return;
+            }
+            await session.commitTransaction();
+            res.status(200).json({ message: "Payment successful!" });
+        }
+        catch (err) {
+            await session.abortTransaction();
+            console.error(err);
+            res.status(400).json({ error: "Payment verification failed" });
+        }
+
+    }).catch((error) => {
+        console.error('Error:', error.response.data.message);
+    });
+
+})
 
 
 router.post("/verifyDetails",JWTMiddleware,async (req,res)=>{

@@ -10,9 +10,7 @@ echo Building backend...
 echo done
 
 echo Building Docker image...
-docker build -t shubhamdockr/paynow:3.0 .
-
-docker push shubhamdockr/paynow:3.0
+docker build paynow .
 
 echo Build process completed!
 
