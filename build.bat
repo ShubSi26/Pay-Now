@@ -10,7 +10,7 @@ echo Building backend...
 echo done
 
 echo Building Docker image...
-docker build paynow .
+docker build -t paynow .
 
 echo Build process completed!
 
