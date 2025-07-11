@@ -60,3 +60,11 @@ jobs:
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u shubhamdockr --password-stdin
           docker push shubhamdockr/paynow:latest
       
+  WebHook:
+    runs-on: ubuntu-latest
+    needs: Pushing_Docker_Image
+    steps:
+      - name: Checkout
+        uses: action/checkout@v4
+      - name: Curl request
+        run: curl -X GET "${{ secrets.WEBHOOK }}"
