@@ -91,16 +91,13 @@ router.post('/cashfreeorder',JWTMiddleware,async (req,res)=>{
     Cashfree.XClientSecret=process.env.cashfreeXClientSecret;
     Cashfree.XEnvironment="TEST";
 
-    const resp = await user.findOne({_id:user_id});
-
     const request = {
         "order_amount": amount,
         "order_currency": "INR",
         "order_id": `csfree_${Math.floor(Math.random()*1000000)}`,
         "customer_details": {
             "customer_id": user_id,
-            "customer_phone": resp.number,
-            "customer_name": resp.name,
+            "customer_phone":"1234567890",
         },   
     }
 
