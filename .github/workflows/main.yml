@@ -65,6 +65,6 @@ jobs:
     needs: Pushing_Docker_Image
     steps:
       - name: Checkout
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
       - name: Curl request
         run: curl -X GET "${{ secrets.WEBHOOK }}"
