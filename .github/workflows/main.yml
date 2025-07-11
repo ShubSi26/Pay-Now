@@ -15,6 +15,11 @@ jobs:
           cd frontend
           npm install
           npm run build
+      - name: Upload Frontend Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist
           
   Building_Docker_Image:
     runs-on: ubuntu-latest
@@ -22,6 +27,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Download Frontend Build
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist
       - name: Building Image
         run: docker build -t shubhamdockr/paynow:latest .
 
