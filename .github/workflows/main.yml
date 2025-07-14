@@ -2,8 +2,9 @@ name: Build and Push to Docker Hub
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
 jobs:
   Building_Frontend-Backend:
     runs-on: ubuntu-latest
