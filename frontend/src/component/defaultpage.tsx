@@ -20,7 +20,7 @@ export default function defaultpage(){
         <div className="sm:w-1/3 flex flex-col justify-center item-center m-4 sm:border-0 bg-cyan-900 border-2 sm:bg-transparent border-slate-300 rounded-2xl">
             <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">
                 <div className="text-white text-5xl font-bold text-center p-4  rounded-lg shadow-lg">
-                    Create Your Account Without Incurring Any Charges!
+                    Create Your Account Without Incurring Any Charges
                 </div>
             </div>            
         <LoginBox/>
