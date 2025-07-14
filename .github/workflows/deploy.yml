@@ -63,7 +63,9 @@ jobs:
       
   WebHook:
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: https://paynow.devshubh.live
     needs: Pushing_Docker_Image
     steps:
       - name: Checkout
