@@ -63,6 +63,7 @@ jobs:
       
   WebHook:
     runs-on: ubuntu-latest
+    environment: production
     needs: Pushing_Docker_Image
     steps:
       - name: Checkout
